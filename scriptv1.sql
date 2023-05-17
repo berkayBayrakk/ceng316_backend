@@ -66,10 +66,6 @@ CREATE TABLE ElectionResult (
     votes INTEGER
 );
 
-
-
-
-
 -- Notification Table
 CREATE TABLE Notification (
     id SERIAL PRIMARY KEY,

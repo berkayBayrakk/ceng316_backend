@@ -9,8 +9,12 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
-postgresDB.connect((err)=>{
-    console.log(err);
-})
+postgresDB.client.connect((err)=>{
+    if(err){
+        console.log(err);
+    }
+});
+
+postgresDB.createTables();
 
 module.exports =app;

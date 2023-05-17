@@ -5,4 +5,3 @@ app.listen(PORT,()=>{
     console.log('Server runing on port '+PORT)
 });
 
-module.exports=app;
