@@ -55,6 +55,7 @@ CREATE TABLE Department (\n\
 CREATE TABLE Student (\n\
     id SERIAL PRIMARY KEY,\n\
     name TEXT NOT NULL,\n\
+    password TEXT NOT NULL,\n\
     email TEXT,\n\
     department_id INTEGER REFERENCES Department(id),\n\
     role TEXT DEFAULT 'undergraduate',\n\
@@ -64,7 +65,6 @@ CREATE TABLE Student (\n\
 \
 CREATE TABLE Candidate (\n\
     id SERIAL PRIMARY KEY,\n\
-    form_id INTEGER REFERENCES Form(id),\n\
     correction boolean DEFAULT false,\n\
     status TEXT\n\
 );\n\
