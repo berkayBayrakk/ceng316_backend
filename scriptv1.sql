@@ -34,7 +34,6 @@ CREATE TABLE Student (
 -- Candidate Table
 CREATE TABLE Candidate (
     id SERIAL PRIMARY KEY,
-    form_id INTEGER REFERENCES Form(id),
     correction boolean DEFAULT false,
     status TEXT
 );
@@ -45,8 +44,9 @@ CREATE TABLE Form (
     candidate_id INTEGER REFERENCES Candidate(id) NOT NULL,
     type TEXT,
     name TEXT
-    -- inputs-photographs
 );
+
+
 
 -- Election Table
 CREATE TABLE Election (
@@ -73,7 +73,7 @@ CREATE TABLE Notification (
     message TEXT NOT NULL
 );
 
--- Vote Table 
+-- Vote Table (Joint)
 CREATE TABLE Vote (
 	student_id INTEGER REFERENCES Student(id),
 	election_id INTEGER REFERENCES Election(id),
