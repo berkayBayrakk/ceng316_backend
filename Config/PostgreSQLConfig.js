@@ -7,27 +7,17 @@ const client= new Client({
     password:process.env.DB_PASSWORD
 });
 
-function isExistDB(db,table){
-    const query=`SELECT 
-    COUNT(table_name)
-FROM 
-    information_schema.tables 
-WHERE 
-    table_schema LIKE ${db} AND 
-    table_type LIKE 'BASE TABLE' AND
-	table_name = ${table};`
-    return client.query(query,(err,res)=>{
-        if(err){
-            console.log(err)
-            return err;
-        }
-        console.log(res)
-        return res;
-        client.end;
-    })
+async function isExistDB(){
+    const query="SELECT EXISTS ( SELECT 1 FROM information_schema.tables WHERE table_schema = 'public'); "
+    let value;
+    return await client.query(query).then((res)=> {
+        return res.rows[0].exists;
+    }).catch(err=>{
+        return err
+    });
 }
 
-function createTables(){
+async function createTables(){
     const query="\
 DROP TABLE IF EXISTS Student CASCADE; \n\
 DROP TABLE IF EXISTS Candidate CASCADE;\n\
@@ -110,13 +100,18 @@ CREATE TABLE Vote (\n\
 );\n\
 \
     "
-    console.log(query)
-    client.query(query,(err,res)=>{
-        if(err){
-            console.log(err);
-        }
-        //console.log(res);
-    })
+
+    const  isExist=await isExistDB();
+
+    if(!isExist){
+        client.query(query,(err,res)=>{
+            if(err){
+                console.log(err);
+            }
+            console.log("Tables are created");
+        })
+    }
+  
 }
 
 //client.connect();

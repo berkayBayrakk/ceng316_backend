@@ -1,6 +1,8 @@
 const express=require('express');
 const bodyParser = require('body-parser');
 
+const swaggerUi = require('swagger-ui-express');
+const specs= require('./Config/SwaggerConfig');
 const postgresDB=require('./Config/PostgreSQLConfig');
 
 const app=express();
@@ -16,5 +18,14 @@ postgresDB.client.connect((err)=>{
 });
 
 postgresDB.createTables();
+
+
+
+//routes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+app.use('/auth',require('./Routes/auth'));
+
+
 
 module.exports =app;
