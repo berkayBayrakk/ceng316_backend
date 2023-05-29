@@ -107,11 +107,11 @@ CREATE TABLE Vote (\n\
         client.query(query,(err,res)=>{
             if(err){
                 console.log(err);
+                console.log(12)
             }
             console.log("Tables are created");
         })
     }
-  
 }
 
 //client.connect();

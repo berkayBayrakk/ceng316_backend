@@ -4,7 +4,7 @@ const options = {
         // Like the one described here: https://swagger.io/specification/#infoObject
 
         info: {
-          title: 'Ride My Way',
+          title: 'IOES',
           version: '1.0.0',
           description: 'API documentation for IZTECH ONLINE ELECTION SYSTEM',
           contact: {
@@ -12,7 +12,7 @@ const options = {
             email: 'berkaybayrak296@gmail.com',
           },
         },
-        basePath: '/api-docs',
+        basePath: '/',
       },
       // List of files to be processes. You can also set globs './routes/*.js'
         apis: ['./Routes/*.js']
