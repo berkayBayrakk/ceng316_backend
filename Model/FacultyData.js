@@ -1,13 +1,13 @@
-const {client}=require('../Config/PostgreSQLConfig');
+const {sql}=require('../Config/PostgreNeonConfig');
 
 async function getAllFaculties(){
-    const query="SELECT * from Faculty";
-    return (await client.query(query)).rows;
+    const result=await sql`SELECT * from faculty`
+    return result;
 }
 
 async function getFacultyById(id){
-    const query=`SELECT  * from Faculty WHERE id=${id}`;
-    return (await client.query(query)).rows[0];
+    const result=await sql`SELECT  * from Faculty WHERE id=${id}::int4`
+    return result[0];
 }
 
 

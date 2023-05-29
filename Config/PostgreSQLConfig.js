@@ -4,7 +4,9 @@ const client= new Client({
     user:process.env.DB_USER,
     port:process.env.DB_PORT,
     database:process.env.DB_NAME,
-    password:process.env.DB_PASSWORD
+    password:process.env.DB_PASSWORD,
+    connectionTimeoutMillis: 5000
+    
 });
 
 async function isExistDB(){

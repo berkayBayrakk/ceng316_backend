@@ -1,9 +1,9 @@
-const {client}=require('../Config/PostgreSQLConfig');
+const {sql}=require('../Config/PostgreNeonConfig');
 
 
 async function getStudentByEmail(email){
-    const query=`SELECT * from Student WHERE email='${email}'`;
-    return (await client.query(query)).rows[0];
+    const result=await sql`SELECT * from Student WHERE email=${email}::text`
+    return result[0];
 }
 
 module.exports={getStudentByEmail};

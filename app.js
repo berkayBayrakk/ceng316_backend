@@ -3,23 +3,29 @@ const bodyParser = require('body-parser');
 
 const swaggerUi = require('swagger-ui-express');
 const specs= require('./Config/SwaggerConfig');
-const postgresDB=require('./Config/PostgreSQLConfig');
-const { createStudentInstances } = require('./Config/seed');
 
+const postgresDB=require('./Config/PostgreSQLConfig');
+const {}=require('./Config/PostgreNeonConfig');
+const{createFacultyInstances,createDeaprtmentInstances,createStudentInstances} = require('./Config/seed')
 const app=express();
     
 app.use(express.json());
 
 app.use(bodyParser.json());
 
-postgresDB.client.connect((err)=>{
+//createFacultyInstances().then((obj)=>{console.log(obj)})
+
+/*postgresDB.client.connect((err)=>{
     if(err){
         console.log(err);
     }
 });
 
 postgresDB.createTables().then((obj)=>{console.log(obj)});
-
+*/
+//createFacultyInstances().then(()=>{})
+//createDeaprtmentInstances().then(()=>{})
+//createStudentInstances().then(()=>{})
 
 //routes
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
