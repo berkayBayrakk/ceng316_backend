@@ -35,7 +35,8 @@ CREATE TABLE Student (
 CREATE TABLE Candidate (
     id SERIAL PRIMARY KEY,
     correction boolean DEFAULT false,
-    status TEXT
+    status TEXT,
+    student_id INTEGER REFERENCES Student(id) NOT NULL
 );
 
 -- Form Table
