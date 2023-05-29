@@ -4,7 +4,9 @@ const client= new Client({
     user:process.env.DB_USER,
     port:process.env.DB_PORT,
     database:process.env.DB_NAME,
-    password:process.env.DB_PASSWORD
+    password:process.env.DB_PASSWORD,
+    connectionTimeoutMillis: 5000
+    
 });
 
 async function isExistDB(){
@@ -107,11 +109,11 @@ CREATE TABLE Vote (\n\
         client.query(query,(err,res)=>{
             if(err){
                 console.log(err);
+                console.log(12)
             }
             console.log("Tables are created");
         })
     }
-  
 }
 
 //client.connect();
