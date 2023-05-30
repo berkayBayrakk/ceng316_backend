@@ -1,10 +1,14 @@
 const {sql}=require('../Config/PostgreNeonConfig');
 
+async function getAllElections() {
+    const result = await sql`SELECT * FROM Election`;
+    return result;
+}
+
 async function getElectionById(id) {
     const result = await sql `SELECT * FROM Election WHERE id=${id}::int4`;
     return result;
 };
-
 
 async function getAllElectionsActive() {
     const result = await sql `SELECT * FROM Election WHERE start_time <= CURRENT_TIME AND end_time > CURRENT_TIME`;
@@ -21,4 +25,4 @@ async function getAllElectionsFinished() {
     return result;
 }
 
-module.exports(getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished); 
+module.exports(getAllElections, getElectionById,getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished); 
