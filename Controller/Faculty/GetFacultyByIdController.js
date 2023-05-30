@@ -4,7 +4,6 @@ async function getFaculty(req,res){
     const id=req.params.id;
     try {
         const faculty=await getFacultyById(id);
-        console.log(faculty);
         if(faculty){
             return res.json(faculty);
         }

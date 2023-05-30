@@ -1,3 +1,5 @@
+// NOT USE THIS CONFIG !!!
+
 const {Client}=require('pg');
 const client= new Client({
     host:process.env.DB_HOST,
@@ -47,7 +49,8 @@ CREATE TABLE Department (\n\
 CREATE TABLE Student (\n\
     id SERIAL PRIMARY KEY,\n\
     name TEXT NOT NULL,\n\
-    password TEXT NOT NULL,\n\
+    password VARCHAR(20) NOT NULL,\n\
+    tcnumber VARCHAR(15),\n\
     email TEXT,\n\
     department_id INTEGER REFERENCES Department(id),\n\
     role TEXT DEFAULT 'undergraduate',\n\
@@ -73,7 +76,6 @@ CREATE TABLE Form (\n\
 CREATE TABLE Election (\n\
     id SERIAL PRIMARY KEY,\n\
     name TEXT NOT NULL,\n\
-    date DATE,\n\
     start_time TIME,\n\
     end_time TIME,\n\
     position TEXT\n\
