@@ -95,6 +95,7 @@ async function createDatabase(){
     CREATE TABLE Vote (
         student_id INTEGER REFERENCES Student(id),
         election_id INTEGER REFERENCES Election(id),
+        candidate_id INTEGER REFERENCES Candidate(id),
         PRIMARY KEY(Student_id, election_id)
     
     );`

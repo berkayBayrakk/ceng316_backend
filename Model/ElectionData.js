@@ -6,22 +6,22 @@ async function getAllElections() {
 };
 
 async function getElectionById(id) {
-    const result = await sql `SELECT * FROM Election WHERE id=${id}::int4`;
+    const result = await sql`SELECT * FROM Election WHERE id=${id}::int4`;
     return result;
 };
 
 async function getAllElectionsActive() {
-    const result = await sql `SELECT * FROM Election WHERE start_time <= CURRENT_TIME AND end_time > CURRENT_TIME`;
+    const result = await sql`SELECT * FROM Election WHERE start_time <= CURRENT_TIME AND end_time > CURRENT_TIME`;
     return result;
 };
 
 async function getAllElectionsNotStarted() {
-    const result = await sql `SELECT * FROM Election WHERE start_time > CURRENT_TIME`;
+    const result = await sql`SELECT * FROM Election WHERE start_time > CURRENT_TIME`;
     return result;
 };
 
 async function getAllElectionsFinished() {
-    const result = await sql `SELECT * FROM Election WHERE end_time <= CURRENT_TIME`;
+    const result = await sql`SELECT * FROM Election WHERE end_time <= CURRENT_TIME`;
     return result;
 };
 

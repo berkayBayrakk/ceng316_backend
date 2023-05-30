@@ -5,8 +5,7 @@ async function getAllCandidatesByElectionId(id) {
     FROM Candidate
     JOIN Student ON Candidate.student_id = Student.id
     JOIN Election ON Candidate.election_id = Election.id
-    WHERE Candidate.Status = 'valid' AND Election.id = ${id}::int4;
-    `;
+    WHERE Candidate.Status = 'valid' AND Election.id = ${id}::int4;`;
     return result;
 };
 
@@ -20,4 +19,16 @@ async function getAllCandidatesPendingByElectionId(id) {
 };
 
 
-module.exports={getAllCandidatesByElectionId, getAllCandidatesPendingByElectionId};
+// Get total votes per candidate in specific election.
+async function getTotalVotesPerCandidateByElectionId(electionId) {
+    const result = await sql`SELECT Candidate.id, Student.name AS candidate_name, COUNT(*) AS vote_count
+    FROM Candidate
+    JOIN Student ON Candidate.student_id = Student.id
+    JOIN Vote ON Candidate.id = Vote.candidate_id
+    WHERE Candidate.election_id = ${electionId}::int4
+    GROUP BY Candidate.id, Student.name;`;
+    return result;
+};
+
+
+module.exports={getAllCandidatesByElectionId, getAllCandidatesPendingByElectionId, getTotalVotesPerCandidateByElectionId };
