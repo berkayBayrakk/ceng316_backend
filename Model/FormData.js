@@ -23,4 +23,4 @@ async function getAllPendingForms() {
     return result;
 }
 
-module.exports(getFormIdAndCandidateNameByCandidateId, getAllForms, getAllPendingForms);
+module.exports={getFormIdAndCandidateNameByCandidateId, getAllForms, getAllPendingForms};

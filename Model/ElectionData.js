@@ -25,4 +25,4 @@ async function getAllElectionsFinished() {
     return result;
 };
 
-module.exports(getAllElections, getElectionById,getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished); 
+module.exports={getAllElections, getElectionById,getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished}; 

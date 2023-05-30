@@ -16,6 +16,6 @@ async function getElectionResultByElectionId(id) {
     return result;
 };
 
-module.exports(getAllElectionResult, getElectionResultByElectionId);
+module.exports={getAllElectionResult, getElectionResultByElectionId};
 
 

@@ -24,4 +24,4 @@ async function getAllElectionsByStudentId(studentId) {
 };
 
 
-module.exports(isStudentVoted, getVoteCountByElectionId, getAllVotesByElectionId, getAllElectionsByStudentId);
+module.exports={isStudentVoted, getVoteCountByElectionId, getAllVotesByElectionId, getAllElectionsByStudentId};

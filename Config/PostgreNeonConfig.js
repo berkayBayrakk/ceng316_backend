@@ -48,13 +48,23 @@ async function createDatabase(){
     CREATE TABLE Student (
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
-        email TEXT,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
         department_id INTEGER REFERENCES Department(id),
         role TEXT DEFAULT 'undergraduate',
         tenure DATE
     );/
     
-   
+    CREATE TABLE Admin (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        role TEXT DEFAULT 'admin',
+        
+    );/
+
+
     CREATE TABLE Candidate (
         id SERIAL PRIMARY KEY,
         correction boolean DEFAULT false,
