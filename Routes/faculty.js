@@ -36,7 +36,14 @@ facultyRoute.get('/',getFacultiesHandler);
  *     description: Admin gets faculty.
  *     produces:
  *       - application/json
- *    
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         description: Faculty ID
  *     responses:
  *       200:
  *         description: Get specified faculty.
@@ -45,7 +52,6 @@ facultyRoute.get('/',getFacultiesHandler);
  *       500:
  *         description: Server error
  */
-facultyRoute.get('/',getFacultiesHandler);
 facultyRoute.get('/:id',getFacultyByIdHandler);
 
 

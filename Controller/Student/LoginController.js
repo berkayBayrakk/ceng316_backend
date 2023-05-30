@@ -1,7 +1,7 @@
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
-const {getStudentByEmail}=require('../Model/StudentData')
+const {getStudentByEmail}=require('../../Model/StudentData')
 
 async function loginHandler(req,res){
     const{email,password}=req.body;

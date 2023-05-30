@@ -1,7 +1,7 @@
 
 const {getAllDepartments}=require('../../Model/DepartmentData');
 
-const getFaculties=async(req,res)=>{
+const getDepartment=async(req,res)=>{
     try {
         const departments=await getAllDepartments();
         return res.json(departments);
@@ -10,4 +10,5 @@ const getFaculties=async(req,res)=>{
     }
 }
 
-module.exports=getFaculties;
+
+module.exports=getDepartment;

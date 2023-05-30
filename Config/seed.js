@@ -22,5 +22,7 @@ async function createStudentInstances(){
     //await sql`INSERT INTO Student (name,password,email,department_id) VALUES ('Student 2','${cryptedPassword}','student2@gmail.com',1);`;
     //await sql`INSERT INTO Student (name,password,email,department_id) VALUES ('Student 3','${cryptedPassword}','student3@gmail.com',2);`;
 }
+
+
 module.exports={createFacultyInstances,createDeaprtmentInstances,createStudentInstances};
 

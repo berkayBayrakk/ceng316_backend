@@ -1,4 +1,4 @@
-const {loginHandler}=require('../Controller/StudentController');
+const {loginHandler}=require('../Controller/Student/LoginController');
 const express=require('express');
 
 const authRoute=express.Router();
@@ -14,19 +14,18 @@ const authRoute=express.Router();
  *     produces:
  *       - application/json
  *     parameters:
- *       - in: string
- *         name: email
- *         schema:
- *           type: string
- *           format: uuid
+ *       - name: body
+ *         in: body
  *         required: true
- *       - in: string
- *         name: password
- *         schema:
- *           type: string
- *           format: uuid
- *         required: true
- *         
+ *         schema: 
+ *           type: object
+ *           properties:
+ *              email:
+ *                type: string
+ *                example: example@gmail.com
+ *              password:
+ *                type: string
+ *                example: password
  *     responses:
  *       200:
  *         description: User has been logged in.

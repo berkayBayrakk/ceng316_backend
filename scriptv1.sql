@@ -35,7 +35,8 @@ CREATE TABLE Student (
 CREATE TABLE Candidate (
     id SERIAL PRIMARY KEY,
     correction boolean DEFAULT false,
-    status TEXT
+    status TEXT NOT NULL,
+    student_id INTEGER REFERENCES Student(id)
 );
 
 -- Form Table
@@ -52,10 +53,10 @@ CREATE TABLE Form (
 CREATE TABLE Election (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    date DATE,
-    start_time TIME,
-    end_time TIME,
-    position TEXT
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    position TEXT,
+    department_id INTEGER REFERENCES Department(id)
 );
 
 -- Election Result Table

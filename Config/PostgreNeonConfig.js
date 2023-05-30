@@ -9,9 +9,9 @@ const ENDPOINT_ID='ceng316-db'
 // app.js
 const postgres = require('postgres');
 
-const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`;
+const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`;
 
-const sql = postgres("postgres://berkayBayrakk:UlC4eXOrvT7z@ep-misty-frost-070067.us-east-2.aws.neon.tech/neondb", { ssl: 'require' });
+const sql = postgres(URL, { ssl: 'require' });
 
 async function isExistDB(){
     const query="SELECT EXISTS ( SELECT 1 FROM information_schema.tables WHERE table_schema = 'public'); "
@@ -20,7 +20,6 @@ async function isExistDB(){
 }
 
 async function createDatabase(){
-    console.log(12)
     await sql`
     DROP TABLE IF EXISTS Student CASCADE; /
     DROP TABLE IF EXISTS Candidate CASCADE;/

@@ -7,6 +7,7 @@ const specs= require('./Config/SwaggerConfig');
 const postgresDB=require('./Config/PostgreSQLConfig');
 const {}=require('./Config/PostgreNeonConfig');
 const{createFacultyInstances,createDeaprtmentInstances,createStudentInstances} = require('./Config/seed')
+const{getStudentByEmail}=require('./Model/StudentData')
 const app=express();
     
 app.use(express.json());
@@ -26,7 +27,7 @@ postgresDB.createTables().then((obj)=>{console.log(obj)});
 //createFacultyInstances().then(()=>{})
 //createDeaprtmentInstances().then(()=>{})
 //createStudentInstances().then(()=>{})
-
+getStudentByEmail("student2@gmail.com")
 //routes
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 
