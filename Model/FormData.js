@@ -23,4 +23,9 @@ async function getAllPendingForms() {
     return result;
 }
 
-module.exports={getFormIdAndCandidateNameByCandidateId, getAllForms, getAllPendingForms};
+async function createForm(candidate_id,file_data,file_name,mime_type,file_size){
+    const result= await sql`INSTERT INTO from (candidate_id,file_data,file_name,mime_type,file_size) VALUES (${candidate_id}::int4,${file_data}::bytea,${file_name}::text,${mime_type}::text,${file_size}::int4);`
+    return result;
+}
+
+module.exports={getFormIdAndCandidateNameByCandidateId,getAllForms,getAllPendingForms,createForm};
