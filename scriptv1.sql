@@ -46,7 +46,8 @@ CREATE TABLE Form (
     candidate_id INTEGER REFERENCES Candidate(id) NOT NULL,
     file_data BYTEA,
     file_name TEXT,
-    mime_type TEXT
+    mime_type TEXT,
+    file_size INTEGER
 );
 
 
