@@ -1,5 +1,9 @@
 const {sql}=require('../Config/PostgreNeonConfig');
 
+async function getStudentById(id){
+    const result=await sql`SELECT * from Student WHERE id=${id}::int4;`;
+    return result[0];
+}
 
 async function getStudentByEmail(email){
     const result=await sql`SELECT * from Student WHERE email=${email}::text`
@@ -11,4 +15,5 @@ async function updateStudentRoleByStudentId(role, id) {
     return result;
 }
 
-module.exports={getStudentByEmail, updateStudentRoleByStudentId};
+
+module.exports={getStudentByEmail,updateStudentRoleByStudentId,getStudentById};
