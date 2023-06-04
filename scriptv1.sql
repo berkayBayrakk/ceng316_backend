@@ -37,7 +37,8 @@ CREATE TABLE Candidate (
     correction boolean DEFAULT false,
     status TEXT NOT NULL,
     student_id INTEGER REFERENCES Student(id) NOT NULL,
-    election_id INTEGER REFERENCES Election(id) NOT NULL
+    election_id INTEGER REFERENCES Election(id) NOT NULL,
+    comment TEXT 
 );
 
 -- Form Table

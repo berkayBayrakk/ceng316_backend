@@ -14,11 +14,13 @@ async function createDeaprtmentInstances(){
 }
 
 
-
+//berkay123
+//enis123
+//enes123
 async function createStudentInstances(){
-    const cryptedPassword=await bcrypt.hash("fatihguzel123",10);
+    const cryptedPassword=await bcrypt.hash("admin321",10);
 
-    await sql`INSERT INTO Student (name,password,email,department_id,role) VALUES ('Fatih Güzel',${cryptedPassword}::text,'fatihguzel@std.iyte.edu.tr',2,'student');`;
+    await sql`INSERT INTO Student (name,password,email,department_id,role) VALUES ('Enes Dogan',${cryptedPassword}::text,'admin2@iyte.edu.tr',3,'admin');`;
     //await sql`INSERT INTO Student (name,password,email,department_id) VALUES ('Student 2','${cryptedPassword}','student2@gmail.com',1);`;
     //await sql`INSERT INTO Student (name,password,email,department_id) VALUES ('Student 3','${cryptedPassword}','student3@gmail.com',2);`;
 }

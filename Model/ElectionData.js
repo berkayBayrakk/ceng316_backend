@@ -7,9 +7,18 @@ async function getAllElections() {
 
 async function getElectionById(id) {
     const result = await sql`SELECT * FROM Election WHERE id=${id}::int4`;
-    return result;
+    return result[0];
 };
 
+async function getElectionByDepartmentId(department_id){
+    const result = await sql`SELECT * FROM Election WHERE department_id=${department_id}::int4`;
+    return result[0];
+}
+
+async function getAllElectionsActiveByDepartmentId(department_id){
+    const result = await sql`SELECT * FROM Election WHERE start_time <= CURRENT_DATE AND end_time > CURRENT_DATE AND department_id=${department_id}::int4`;
+    return result;
+}
 
 
 async function getAllElectionsActive() {
@@ -37,4 +46,22 @@ async function deleteElectionById(id){
     return result;
 }
 
-module.exports={getAllElections, getElectionById,getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished,createElection,deleteElectionById}; 
+async function deleteElectionById(id){
+    const result=await sql`DELETE FROM Election Where id=${id}::int4 RETURNING *`;
+    return result;
+}
+
+async function deleteElectionByDepartmentId(department_id){
+    const result=await sql`DELETE FROM Election Where department_id=${department_id}::int4 RETURNING *`;
+    return result;
+}
+ 
+async function updateElectionStartAndEndTimeByDepartmentId(department_id,start_date,end_date){
+    const result=await sql`UPDATE election
+    SET start_time = ${start_date},
+    end_time = ${end_date}
+    WHERE department_id = ${department_id}::int4 RETURNING*;`
+    return result;
+}
+
+module.exports={getAllElections,getElectionByDepartmentId,getAllElectionsActiveByDepartmentId, getElectionById,getAllElectionsNotStarted,getAllElectionsActive,getAllElectionsFinished,createElection,deleteElectionById,deleteElectionByDepartmentId,updateElectionStartAndEndTimeByDepartmentId}; 

@@ -13,10 +13,11 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
+
+
   
 // Enable CORS for all routes
 app.use(cors);
-  
 
 //routes
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
