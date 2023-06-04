@@ -13,6 +13,12 @@ async function createDeaprtmentInstances(){
     //await sql`INSERT INTO Department (name,faculty_id) VALUES ('Department 3',2);`;
 }
 
+async function createAdminInstances(){
+    const cryptedPassword=await bcrypt.hash("admin123123",10);
+
+    await sql`INSERT INTO Admin (name,password,email,role) VALUES ('admin',${cryptedPassword}::text,admin@iyte.edu.tr,'admin');`
+}
+
 
 
 async function createStudentInstances(){
@@ -24,5 +30,5 @@ async function createStudentInstances(){
 }
 
 
-module.exports={createFacultyInstances,createDeaprtmentInstances,createStudentInstances};
+module.exports={createFacultyInstances,createDeaprtmentInstances,createStudentInstances,createAdminInstances};
 
