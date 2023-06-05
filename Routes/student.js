@@ -1,39 +1,54 @@
-const applyToBecomdeCandidate=require('../Controller/Candidate/applyToBecomaCandidateController');
 const express=require('express');
 const studentRoute=express.Router();
+
+const getActiveElectionsDepartment=require('../Controller/Election/GetActiveElectionsByDepartment')
+const getStudentsHandler=require('../Controller/Student/GetStudentController');
+
 /**
  * @swagger
  *
- * /student/apply-become-candidate:
- *   post:
- *     tags: 
- *       - "Student"
- *     summary: "Apply to become candidate"
- *     description: Student applies to become candidate.
+ * /student:
+ *   get:
+ *     tags:
+ *       - "Admin"
+ *     summary: "Get all students"
+ *     description: Admin gets all students.
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
- *         required: true
- *         schema: 
- *           type: object
- *           properties:
- *              studentId:
- *                type: integer
- *                example: 1
- *              electionId:
- *                type: integer
- *                example: 1
+ *    
  *     responses:
- *       201:
- *         description: Candidate created.
+ *       200:
+ *         description: Get all students.
+ *       500:
+ *         description: Server error
+ */
+studentRoute.get('/',getStudentsHandler);
+
+/**
+ * @swagger
+ *
+ * /student/active-election-department/{id}:
+ *   get:
+ *     tags: 
+ *       - "Student"
+ *     summary: "Get active elections by department id"
+ *     description: Get active elections by department id.
+ *     parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            schema:
+ *              type: integer
+ *              minimum: 1
+ *            description: Department ID
+ *     responses:
+ *       200:
+ *         description: Get elections.
  *       400:
  *         description: Bad request.
  *       500:
  *         description: Server error.
  */
-studentRoute.post('/apply-become-candidate',applyToBecomdeCandidate);
-
+studentRoute.get('/active-election-department/:id',getActiveElectionsDepartment)
 
 module.exports=studentRoute;

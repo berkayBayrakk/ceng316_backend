@@ -37,7 +37,8 @@ CREATE TABLE Candidate (
     correction boolean DEFAULT false,
     status TEXT NOT NULL,
     student_id INTEGER REFERENCES Student(id) NOT NULL,
-    election_id INTEGER REFERENCES Election(id) NOT NULL
+    election_id INTEGER REFERENCES Election(id) NOT NULL,
+    comment TEXT 
 );
 
 -- Form Table
@@ -46,7 +47,8 @@ CREATE TABLE Form (
     candidate_id INTEGER REFERENCES Candidate(id) NOT NULL,
     file_data BYTEA,
     file_name TEXT,
-    mime_type TEXT
+    mime_type TEXT,
+    file_size INTEGER
 );
 
 

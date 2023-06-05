@@ -5,6 +5,15 @@ const swaggerUi = require('swagger-ui-express');
 const specs= require('./Config/SwaggerConfig');
 
 const{createStudentInstances} =require('./Config/seed');
+const{createFacultyInstances} =require('./Config/seed');
+const{createDeaprtmentInstances} =require('./Config/seed');
+const{createElectionInstances} =require('./Config/seed');
+const{createCandidateInstances} =require('./Config/seed');
+createCandidateInstances();
+//createStudentInstances();
+// createDeaprtmentInstances();
+//createFacultyInstances();
+//createElectionInstances();
 const app=express();
 
 const cors=require('./Middleware/cors')
@@ -13,10 +22,11 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
+
+
   
 // Enable CORS for all routes
 app.use(cors);
-  
 
 //routes
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));

@@ -1,10 +1,10 @@
-const {getAllCandidatesByElectionIdAndStatus}=require('../../Model/CandidateData');
+const {getAllCandidatesByDepartmentIdAndStatus}=require('../../Model/CandidateData');
 
-async function getCandidatesByElectionIdAndStatus(req,res){
-    const electionId=req.query.electionId;
+async function getCandidatesByDepartmentIdAndStatus(req,res){
+    const departmentId=req.query.departmentId;
     const status=req.query.status;
     try {
-        const candidates=await getAllCandidatesByElectionIdAndStatus(electionId,status);
+        const candidates=await getAllCandidatesByDepartmentIdAndStatus(departmentId,status);
         if(candidates){
             return res.json(candidates);
         }
@@ -14,4 +14,4 @@ async function getCandidatesByElectionIdAndStatus(req,res){
     }
 }
 
-module.exports=getCandidatesByElectionIdAndStatus;
+module.exports=getCandidatesByDepartmentIdAndStatus;
