@@ -53,8 +53,7 @@ CREATE TABLE Student (\n\
     tcnumber VARCHAR(15),\n\
     email TEXT,\n\
     department_id INTEGER REFERENCES Department(id),\n\
-    role TEXT DEFAULT 'undergraduate',\n\
-    tenure DATE\n\
+    \n\
 );\n\
 \
 \

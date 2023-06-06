@@ -27,8 +27,8 @@ CREATE TABLE Student (
     name TEXT NOT NULL,
     email TEXT,
     department_id INTEGER REFERENCES Department(id),
-    role TEXT DEFAULT 'undergraduate',
-    tenure DATE
+    role TEXT,
+    
 );
 
 -- Candidate Table

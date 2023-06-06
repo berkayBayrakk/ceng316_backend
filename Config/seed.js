@@ -81,5 +81,14 @@ async function deleteFaculty() {
     await sql`DELETE FROM Faculty`;
 }
 
-module.exports={createCandidateInstances,createElectionInstances,deleteFaculty, deleteDepartments,deleteForms, deleteCandidate,deleteStudents,createFacultyInstances,createDeaprtmentInstances,createStudentInstances,createAdminInstances};
+async function changeRoles() {
+    await sql`UPDATE Student
+    SET role = 'student'
+    WHERE role = 'undergraduate';
+    `;
+}
+
+
+
+module.exports={changeRoles,createCandidateInstances,createElectionInstances,deleteFaculty, deleteDepartments,deleteForms, deleteCandidate,deleteStudents,createFacultyInstances,createDeaprtmentInstances,createStudentInstances,createAdminInstances};
 

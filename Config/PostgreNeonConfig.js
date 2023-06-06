@@ -50,8 +50,8 @@ async function createDatabase(){
         email TEXT NOT NULL,
         password TEXT NOT NULL,
         department_id INTEGER REFERENCES Department(id),
-        role TEXT DEFAULT 'undergraduate',
-        tenure DATE
+        role TEXT ,
+        
     );/
     
     CREATE TABLE Admin (
