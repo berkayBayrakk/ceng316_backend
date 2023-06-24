@@ -11,6 +11,7 @@ const abortElection=require('../Controller/Election/AbortElectionController');
 const deleteElectionByDepartment=require('../Controller/Election/DeleteElectionByDepartment');
 const announceElectionDate=require('../Controller/Election/AnnounceElectionDateController');
 const updateElectionDate=require('../Controller/Election/updateElectionDateController');
+const endElectionDate=require('../Controller/Election/endElectionController');
 
 
 /**
@@ -126,6 +127,38 @@ electionRoute.get('/election-not-started',getNotFinishedElections);
  *         description: Server error.
  */
 electionRoute.post('/announce-election-date',announceElectionDate);
+
+
+/**
+ * @swagger
+ *
+ * /election/end-election:
+ *   post:
+ *     tags: 
+ *       - "Admin"
+ *     summary: "End election"
+ *     description: Admin ends the election by department id
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         schema: 
+ *           type: object
+ *           properties:
+ *              departmentId:
+ *                type: integer
+ *                example: 1
+ *     responses:
+ *       200:
+ *         description: Election ended.
+ *       400:
+ *         description: The election has already been ended.
+ *       500:
+ *         description: Server error.
+ */
+electionRoute.post('/end-election',endElectionDate);
 
 
 /**

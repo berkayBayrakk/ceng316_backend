@@ -60,7 +60,7 @@ async function deleteCandidate(candidate_id){
 
 async function updateCandidateApplicationDateToCurrent(id){
     const result=await sql`UPDATE candidate
-    SET application_date = CURRENT_DATE
+    SET application_date = CURRENT_TIMESTAMP AT TIME ZONE 'Europe/Istanbul'
     WHERE id = ${id}::int4 RETURNING*;`
     return result;
 }

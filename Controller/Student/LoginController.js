@@ -2,6 +2,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
 const {getStudentByEmail}=require('../../Model/StudentData')
+const {getDepartmentById}=require('../../Model/DepartmentData')
 
 async function loginHandler(req,res){
     const{email,password}=req.body;
@@ -9,15 +10,18 @@ async function loginHandler(req,res){
     
     try {
         const student=await getStudentByEmail(email);
+        
         if(!student) return res.status(401).json({'message':'Email is not exist'});
         const resultPswrd=await bcrypt.compare(password,student.password)
 
         if(!resultPswrd) return res.status(401).json({'message':'Password is not correct'});
-
+        const department=await getDepartmentById(student.department_id);
         const accessToken=jwt.sign(
             {
                 "UserInfo":{
-                  ...student
+                  department_name: department[0].department_name,
+                    ...student,
+                  
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
