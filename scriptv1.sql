@@ -27,7 +27,7 @@ CREATE TABLE Student (
     name TEXT NOT NULL,
     email TEXT,
     department_id INTEGER REFERENCES Department(id),
-    role TEXT DEFAULT 'undergraduate',
+    role TEXT,
     tenure DATE
 );
 
@@ -37,21 +37,19 @@ CREATE TABLE Candidate (
     correction boolean DEFAULT false,
     status TEXT NOT NULL,
     student_id INTEGER REFERENCES Student(id) NOT NULL,
-    election_id INTEGER REFERENCES Election(id) NOT NULL,
+    election_id INTEGER REFERENCES Election(id) NOT NULL ON DELETE CASCADE,
     comment TEXT 
 );
 
 -- Form Table
 CREATE TABLE Form (
     id SERIAL PRIMARY KEY,
-    candidate_id INTEGER REFERENCES Candidate(id) NOT NULL,
+    candidate_id INTEGER REFERENCES Candidate(id) NOT NULL ON DELETE CASCADE,
     file_data BYTEA,
     file_name TEXT,
     mime_type TEXT,
     file_size INTEGER
 );
-
-
 
 -- Election Table
 CREATE TABLE Election (
@@ -65,22 +63,15 @@ CREATE TABLE Election (
 -- Election Result Table
 CREATE TABLE ElectionResult (
     id SERIAL PRIMARY KEY,
-    election_id INTEGER REFERENCES Election(id) NOT NULL,
-    winner_student_id INTEGER,
-    votes INTEGER
-);
-
--- Notification Table
-CREATE TABLE Notification (
-    id SERIAL PRIMARY KEY,
-    receiver_id INTEGER NOT NULL,
-    message TEXT NOT NULL
+    department_id INTEGER REFERENCES Department(id) NOT NULL UNIQUE,
+    winner_student_id INTEGER[],
+    vote_count INTEGER
 );
 
 -- Vote Table (Joint)
 CREATE TABLE Vote (
 	student_id INTEGER REFERENCES Student(id),
-	election_id INTEGER REFERENCES Election(id),
+	election_id INTEGER REFERENCES Election(id) ON DELETE CASCADE,
+    candidate_id INTEGER REFERENCES Candidate(id) ON DELETE CASCADE,
 	PRIMARY KEY(Student_id, election_id)
-
 );
