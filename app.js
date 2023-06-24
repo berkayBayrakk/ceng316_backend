@@ -8,7 +8,6 @@ const{createStudentInstances} =require('./Config/seed');
 const app=express();
 
 const cors=require('./Middleware/cors')
-//createStudentInstances();
 app.use(express.json());
 
 app.use(bodyParser.json());
@@ -30,5 +29,6 @@ app.use('/faculty',require('./Routes/faculty'));
 app.use('/election',require('./Routes/election'));
 app.use('/department',require('./Routes/department'));
 app.use('/candidate',require('./Routes/candidate'));
+app.use('/vote',require('./Routes/vote'));
 
 module.exports =app;
