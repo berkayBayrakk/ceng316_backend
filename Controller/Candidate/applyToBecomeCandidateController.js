@@ -9,7 +9,6 @@ async function applyToBecomeCandidate(req,res){
     const {studentId}=req.body;
     const files = req.files;
     try {
-        
         if(!files) return res.status(400).json({'message':'No file uploaded.'});
         if(files.length!==3) return res.status(400).json({'message':'There should be 3 files.'});
         //check student's department id and election's department id are same
@@ -19,6 +18,8 @@ async function applyToBecomeCandidate(req,res){
         const student= await getStudentById(studentId);
         const election= await getElectionByDepartmentId(student.department_id);
         const department = await getDepartmentById(student.department_id);
+        console.log(election)
+
         const candidate= await createCandidate(studentId,election.id);
         files.forEach(async file => {
             await createForm(candidate[0].id,file.buffer,file.originalname,file.mimetype,file.size);
